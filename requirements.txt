@@ -1,0 +1,7 @@
+Flask==3.0.3
+googletrans==4.0.0rc1
+itemadapter==0.8.0
+matplotlib==3.8.4
+pandas==2.2.0
+Scrapy==2.11.1
+seaborn==0.13.2
