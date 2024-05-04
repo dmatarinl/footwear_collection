@@ -1,8 +1,25 @@
 # Footwear_Collection
 
-A Python project that scrapes and provides an API for managing footwear data from various brands. 
+A Python project that scrapes and provides an API for managing footwear data from various brands. Using Flask and Scrapy as main frameworks.
 
-Using Flask and Scrapy as main frameworks.
+This project features a system of two spiders designed to collect data from the Saint Laurent and Puma websites, extracting the following information for each product:
+
+- `product_id`
+- `title`
+- `brand`
+- `description`
+- `current_price`
+- `original_price`
+- `availability`
+- `image_urls`
+- `colors`
+- `sizes`
+- `category_path`
+- `url`
+
+The first spider scrapes the Saint Laurent website, generating a `products.csv` file with at least 27 products.
+
+The second spider, created with more Scrapy experience, targets the Puma website. It can gather data for up to 1,233 products, but the pagination is managed using a count limiter to minimize pages. Currently, it scrapes only one page, resulting in 36 products, to promptly provide initial results. 
 
 ## Features
 
@@ -86,12 +103,12 @@ scrapy crawl puma
 It will run on port :5000
 
 2. **API Endpoints**
-    - `/products`: Get all products
-    - `/products/search`: Search products using various filters and sorting options
-    - `/products/summary`: Get summary of products per category
+    - `/products`: Get all products (GET)
+    - `/products/search`: Search products using various filters and sorting options (GET)
+    - `/products/summary`: Get summary of products per category (GET)
     - `/products/create`: Create a new product (POST)
     - `/products/<product_id>`: Update or delete a product (PUT, DELETE)
-    - `/products/visualization`: Generate a visualization of products per category
+    - `/products/visualization`: Generate a visualization of products per category (GET)
 
 Within the api.py you will find each method documented appropriately. Tested using VsCode extension ThunderClient.
 
@@ -106,6 +123,17 @@ http://127.0.0.1:5000/products/search?description=running&sort_by=current_price&
 
 http://127.0.0.1:5000/products/search?title=sneaker&colors=red,blue&sizes=42,43,45&sort_by=title&sort_order=asc
 ```
+
+## Room for Improvement
+
+1. **Handling Pagination**: I plan to change the way pagination is handled to improve efficiency and compliance, moving away from ignoring robots.txt. Instead, I aim to incorporate tools like Splash or Selenium to handle JavaScript-rendered pages effectively.
+
+2. **Testing Enhancements**: I'll focus on adding more comprehensive tests and improving the current testing setup using pytest. The existing tests will be uploaded in the next iterations to maintain a consistent testing environment.
+
+3. **Saint Laurent Spider Enhancements**: The current Saint Laurent spider scrapes all possible sizes instead of only available sizes. I plan to refine this spider's behavior to ensure accurate data collection, similar to how the Puma spider currently works.
+
+These improvements will enhance the quality, maintainability, and ethical compliance of the project.
+
 
 ## Contributing
 
