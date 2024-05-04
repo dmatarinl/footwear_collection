@@ -19,7 +19,11 @@ This project features a system of two spiders designed to collect data from the 
 
 The first spider scrapes the Saint Laurent website, generating a `products.csv` file with at least 27 products.
 
-The second spider, created with more Scrapy experience, targets the Puma website. It can gather data for up to 1,233 products, but the pagination is managed using a count limiter to minimize pages. Currently, it scrapes only one page, resulting in 36 products, to promptly provide initial results. 
+The second spider, created with more Scrapy experience, targets the Puma website. It can gather data for up to 1,233 products, but the pagination is managed using a count limiter to minimize pages. Currently, it scrapes only one page, resulting in 36 products, to promptly provide initial results.
+
+The data obtained for both spiders will be saved in data folder.
+
+The API will consume the data you have collected and return the information in a well structured format. As detailed later on, you will be able to work with the data, filter it and even visualize it by product categories.
 
 ## Features
 
@@ -40,7 +44,7 @@ The second spider, created with more Scrapy experience, targets the Puma website
 
 1. **Clone the Repository**
     ```bash
-    git clone https://github.com/dmatarinl/footwear-collection.git
+    git clone https://github.com/dmatarinl/footwear_collection.git
     cd footwear-collection
     ```
 
@@ -108,7 +112,7 @@ It will run on port :5000
     - `/products/summary`: Get summary of products per category (GET)
     - `/products/create`: Create a new product (POST)
     - `/products/<product_id>`: Update or delete a product (PUT, DELETE)
-    - `/products/visualization`: Generate a visualization of products per category (GET)
+    - `/products/visualization`: Generate a simple visualization of products per category and save it inside data/product_per_category folder (GET)
 
 Within the api.py you will find each method documented appropriately. Tested using VsCode extension ThunderClient.
 
@@ -123,6 +127,11 @@ http://127.0.0.1:5000/products/search?description=running&sort_by=current_price&
 
 http://127.0.0.1:5000/products/search?title=sneaker&colors=red,blue&sizes=42,43,45&sort_by=title&sort_order=asc
 ```
+**Examples API Visualization Call**
+
+After calling this method inside you will visualize an image like this one:
+
+![products_per_category_products_20240504_092348](https://github.com/dmatarinl/footwear_collection/assets/74435367/8635a0f7-564a-440e-a923-406eb7a0f301)
 
 ## Room for Improvement
 
@@ -133,7 +142,6 @@ http://127.0.0.1:5000/products/search?title=sneaker&colors=red,blue&sizes=42,43,
 3. **Saint Laurent Spider Enhancements**: The current Saint Laurent spider scrapes all possible sizes instead of only available sizes. I plan to refine this spider's behavior to ensure accurate data collection, similar to how the Puma spider currently works.
 
 These improvements will enhance the quality, maintainability, and ethical compliance of the project.
-
 
 ## Contributing
 
